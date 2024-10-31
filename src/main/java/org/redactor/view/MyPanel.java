@@ -1,6 +1,7 @@
 package org.redactor.view;
 
 import org.redactor.controller.Controller;
+import org.redactor.model.Shape;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,11 +47,9 @@ public class MyPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        ArrayList<RectangularShape> shapes = controller.translate();
-        if (shapes != null) {
-            for (RectangularShape x : shapes)
-                g2.draw(x);
-        }
+        for (Shape shape : controller.translate())
+            shape.draw(g2);
+
     }
 
 }

@@ -1,30 +1,47 @@
 package org.redactor.model;
 
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
+
 import java.awt.geom.Point2D;
 import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Model {
-    RectangularShape currentShape;
-    ArrayList<RectangularShape> list;
-    public Model(int i){
-        currentShape  = new Ellipse2D.Double();
-        list = new ArrayList<>();
+    Shape currentShape;
+    Collection<Shape> list;
+    private static Model model = null;
+    private Model(){
+        list = new ArrayList<>(); //создаем коллекцию фигур
     }
-    public void addShape() {
-        currentShape = (RectangularShape) currentShape.clone();
-//        currentShape  = new Ellipse2D.Double();
+
+
+    public static Model getInstance(){
+        if (model == null){
+            model = new Model();
+        }
+        return model;
+    }
+
+    public void addShape(Point2D[] points){
+        currentShape = currentShape.clone() ;
         list.add(currentShape);
     }
-    public void setFrame(Point2D[] points) {
-        currentShape.setFrameFromDiagonal(points[0], points[1]);
+    public void setCurrentShape(Shape currentShape) {
+
+        this.currentShape = currentShape;
     }
-    public Shape getShape() {
+    public Shape getCurrentShape() {
+
         return currentShape;
     }
-    public ArrayList<RectangularShape> getList() {
+
+    public Collection<Shape> getList() {
+
         return list;
+    }
+
+
+    public void setFrame(Point2D[] points) {
+        currentShape.addShape(points);
     }
 }
