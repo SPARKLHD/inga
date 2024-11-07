@@ -58,4 +58,7 @@ public class Shape {
         return s;
     }
 
+    public void setFrame(Point2D[] p) {
+        shape.setFrameFromDiagonal(p[0],p[1]);
+    }
 }

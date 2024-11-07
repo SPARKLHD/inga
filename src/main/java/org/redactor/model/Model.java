@@ -2,7 +2,6 @@ package org.redactor.model;
 
 
 import java.awt.geom.Point2D;
-import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -10,8 +9,9 @@ public class Model {
     Shape currentShape;
     Collection<Shape> list;
     private static Model model = null;
-    private Model(){
-        list = new ArrayList<>(); //создаем коллекцию фигур
+    public Model(){
+
+        list = new ArrayList<>();
     }
 
 
@@ -22,8 +22,8 @@ public class Model {
         return model;
     }
 
-    public void addShape(Point2D[] points){
-        currentShape = currentShape.clone() ;
+    public void addShape(Shape shape){
+        currentShape = shape ;
         list.add(currentShape);
     }
     public void setCurrentShape(Shape currentShape) {
@@ -42,6 +42,7 @@ public class Model {
 
 
     public void setFrame(Point2D[] points) {
+
         currentShape.addShape(points);
     }
 }

@@ -14,13 +14,9 @@ import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 
 public class MyPanel extends JPanel {
-    private Controller controller;
-    Point2D[] points;
-    RectangularShape shape;
+    Controller controller;
 
     public MyPanel( Controller controller) {
-        points = new Point2D[2];
-        shape = new Ellipse2D.Double();
         this.controller = controller;
         addMouseListener(new MouseAdapter() {
             @Override
