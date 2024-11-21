@@ -1,5 +1,6 @@
 package org.redactor.model;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.RectangularShape;
@@ -16,7 +17,7 @@ public class Shape {
     }
     public Shape() {
         color = Color.CYAN;
-        shape = new Rectangle2D.Double();
+        shape = new Ellipse2D.Double();
         this.fillBehavior = FillBehavior.FILL;
     }
     public RectangularShape getShape() {
@@ -60,5 +61,9 @@ public class Shape {
 
     public void setFrame(Point2D[] p) {
         shape.setFrameFromDiagonal(p[0],p[1]);
+    }
+
+    public void setcolor(Color c) {
+        this.color = c;
     }
 }

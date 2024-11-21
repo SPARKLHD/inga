@@ -10,31 +10,28 @@ import org.redactor.view.MyPanel;
 
 import java.awt.*;
 import java.util.Collection;
+
 public class Controller {
     MyFrame frame;
     MyPanel panel;
     Model model;
-    ActionInterface actionInterface;
+    State state;
+
     public Controller(){
-        panel = new MyPanel(this);
-        frame = new MyFrame(panel);
         model = new Model();
+        state = new State(model);
         model.setCurrentShape(new Shape());
-        actionInterface =  new ActionDraw(model);
-        frame.setController(this);
+        panel = new MyPanel(this);
+        frame = new MyFrame(panel,state);
 
     }
-    public ActionInterface setActionInterface(ActionInterface actionInterface) {
-        this.actionInterface = actionInterface;
-        actionInterface.setModel(model);
-        return actionInterface;
-    }
+
     public void mousePressed(Point point) {
-        actionInterface.mousePressed(point);
+        state.getActionInterface().mousePressed(point);
     }
 
     public void mouseDragged(Point point) {
-        actionInterface.mouseDragget(point);
+        state.getActionInterface().mouseDragget(point);
     }
     public Collection<Shape> translate () {
         return model.getList();
